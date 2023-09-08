@@ -77,7 +77,6 @@ namespace chip8
                 await calibrateTask;
 
                 double duration = (DateTime.Now - start).TotalMilliseconds;
-                MessageBox.Show(duration.ToString());
                 calibrateMode = false;
 
                 //double msecPerInstructions = (double)duration / InitialInstructionCount; // One instruction takes this time
