@@ -9,7 +9,7 @@ namespace Chip8
      public class keyboard
     {
         bool[] KeyState;   // timestamp of when the key was pressed down
-        public readonly Keys[] KeysCodes = { Keys.D0, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9, Keys.A, Keys.B, Keys.C, Keys.D, Keys.E, Keys.F ,Keys.D0};
+        public readonly Keys[] KeysCodes = { Keys.X, Keys.D1, Keys.D2, Keys.D3, Keys.Q, Keys.W, Keys.E, Keys.A, Keys.S, Keys.D, Keys.Z, Keys.C, Keys.D4, Keys.R, Keys.F, Keys.V ,Keys.D0};
         
 
         public keyboard()
@@ -52,6 +52,11 @@ namespace Chip8
             return false;
         }
 
+        public bool isKeyDown(byte key)
+        {
+            return (KeyState[key]);
+        }
+
         public void clear()
         {
             for (int i=0; i<KeysCodes.Length; i++)
@@ -60,17 +65,17 @@ namespace Chip8
             }
         }
 
-        public ushort GetAnyKey()
+        public byte GetAnyKey()
         {
-            for (int i=0;i<KeysCodes.Length;i++)
+            for (byte i=0;i<KeysCodes.Length;i++)
             {
                 if (KeyState[i])
                 {
-                    return (ushort)i;
+                    return i;
                 }
             }
 
-            return 0xfff;   // meaning no key is pressed
+            return 0xff;   // meaning no key is pressed
         }
     }
 }

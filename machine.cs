@@ -26,7 +26,7 @@ namespace chip8
         private int CalibrationInstructionCount = 700;   // how many instructions per second to calibrate to
         private bool calibrateMode = true;
 
-        byte[] CalibrateROM = { 0x60, 0x00, 0x70, 0x01, 0x61, 0x0F, 0x80, 0x12, 0x62, 0x00, 0xF0, 0x29, 0xD2, 0x25, 0x6A, 0xFF, 0xFA, 0x15, 0x00, 0xE0, 0x12, 0x02 };
+        ushort[] CalibrateROM = { 0x6000, 0x7001, 0x610F, 0x8012, 0x6200, 0xF029, 0x00E0, 0xD225, 0x6AFF, 0x1202 };
 
         public Machine(PictureBox can)
         {
@@ -51,7 +51,8 @@ namespace chip8
             // Initialize the program memory with the self-calibrating program.
             for (int i = 0; i < CalibrateROM.Length; i++)
             {
-                mem[0x200 + i] = CalibrateROM[i];
+                mem[0x200 + (i * 2)] = (byte)((CalibrateROM[i] & 0xff00) >> 8);
+                mem[0x200 + (i * 2) + 1] = (byte)(CalibrateROM[i] & 0x00ff);
             }
 
             this.canvas = can;
@@ -80,7 +81,7 @@ namespace chip8
                 calibrateMode = false;
 
                 //double msecPerInstructions = (double)duration / InitialInstructionCount; // One instruction takes this time
-                waitTime = (1000-duration)/InitialInstructionCount;
+                waitTime = (1000 - duration) / InitialInstructionCount;
             }
         }
 
@@ -224,12 +225,12 @@ namespace chip8
 
             while (run)
             {
-                 startWait = DateTime.Now;
+                startWait = DateTime.Now;
                 while ((DateTime.Now - startWait).TotalMilliseconds < waitTime) { };
 
                 // skip executing the CPU for a set number of times based on the speed calibration
-                
-                {                
+
+                {
                     if (calibrateMode)
                     {
                         if (CalibrationInstructionCount > 0)
@@ -499,7 +500,7 @@ namespace chip8
                                     // SKP Vx
                                     case 0x9e:
                                         {
-                                            if (keys.isKeyDown(keys.KeysCodes[VReg[Vx]]))
+                                            if (keys.isKeyDown(VReg[Vx]))
                                             {
                                                 PC += 2;
                                             }
@@ -509,7 +510,7 @@ namespace chip8
                                     // SKNP Vx
                                     case 0xa1:
                                         {
-                                            if (!keys.isKeyDown(keys.KeysCodes[VReg[Vx]]))
+                                            if (!keys.isKeyDown(VReg[Vx]))
                                             {
                                             }
                                             PC += 2;
@@ -546,16 +547,22 @@ namespace chip8
                                     // LD Vx, K
                                     case 0x0a:
                                         {
-                                            ushort inkey;
+                                            byte inkey;
 
                                             inkey = keys.GetAnyKey();
-                                            if (inkey == 0xfff)   // meaning no key pressed
+                                            if (inkey == 0xff)   // meaning no key pressed
                                             {
                                                 PC -= 2;
                                             }
                                             else
                                             {
                                                 VReg[Vx] = (byte)inkey;
+
+                                                // now wait for release
+                                                if (keys.isKeyDown(inkey))
+                                                {
+                                                    PC -= 2;
+                                                }
                                             }
                                             break;
                                         }

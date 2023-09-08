@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+#Internal testing stuff that doesn't need to go to github
+/roms/

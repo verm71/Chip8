@@ -39,18 +39,19 @@
             // 
             display.BackColor = Color.Black;
             display.BorderStyle = BorderStyle.FixedSingle;
-            display.Location = new Point(12, 82);
-            display.Margin = new Padding(4, 2, 4, 2);
+            display.Location = new Point(6, 38);
+            display.Margin = new Padding(2, 1, 2, 1);
             display.Name = "display";
-            display.Size = new Size(641, 320);
+            display.Size = new Size(640, 320);
             display.TabIndex = 0;
             display.TabStop = false;
             // 
             // runButton
             // 
-            runButton.Location = new Point(219, 12);
+            runButton.Location = new Point(118, 6);
+            runButton.Margin = new Padding(2, 1, 2, 1);
             runButton.Name = "runButton";
-            runButton.Size = new Size(120, 65);
+            runButton.Size = new Size(65, 30);
             runButton.TabIndex = 1;
             runButton.Text = "Run";
             runButton.UseVisualStyleBackColor = true;
@@ -58,9 +59,10 @@
             // 
             // load
             // 
-            load.Location = new Point(12, 12);
+            load.Location = new Point(6, 6);
+            load.Margin = new Padding(2, 1, 2, 1);
             load.Name = "load";
-            load.Size = new Size(120, 65);
+            load.Size = new Size(65, 30);
             load.TabIndex = 2;
             load.Text = "Load";
             load.UseVisualStyleBackColor = true;
@@ -72,14 +74,14 @@
             // 
             // mainForm
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1377, 975);
+            ClientSize = new Size(741, 457);
             Controls.Add(load);
             Controls.Add(runButton);
             Controls.Add(display);
             DoubleBuffered = true;
-            Margin = new Padding(4, 2, 4, 2);
+            Margin = new Padding(2, 1, 2, 1);
             Name = "mainForm";
             StartPosition = FormStartPosition.Manual;
             Text = "Chip8";
