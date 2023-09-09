@@ -74,6 +74,12 @@ namespace Chip8
         private void mainForm_Load(object sender, EventArgs e)
         {
             mac.Calibrate();
+            fastCheckBox.Checked = mac.fast;
+        }
+
+        private void fastCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            mac.fast = (fastCheckBox.Checked);
         }
     }
 }

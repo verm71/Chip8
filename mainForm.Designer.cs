@@ -32,6 +32,7 @@
             runButton = new Button();
             load = new Button();
             openFileDialog1 = new OpenFileDialog();
+            fastCheckBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)display).BeginInit();
             SuspendLayout();
             // 
@@ -39,19 +40,19 @@
             // 
             display.BackColor = Color.Black;
             display.BorderStyle = BorderStyle.FixedSingle;
-            display.Location = new Point(11, 81);
-            display.Margin = new Padding(4, 2, 4, 2);
+            display.Location = new Point(6, 38);
+            display.Margin = new Padding(2, 1, 2, 1);
             display.Name = "display";
-            display.Size = new Size(1187, 680);
+            display.Size = new Size(640, 320);
             display.TabIndex = 0;
             display.TabStop = false;
             // 
             // runButton
             // 
-            runButton.Location = new Point(219, 13);
-            runButton.Margin = new Padding(4, 2, 4, 2);
+            runButton.Location = new Point(118, 6);
+            runButton.Margin = new Padding(2, 1, 2, 1);
             runButton.Name = "runButton";
-            runButton.Size = new Size(121, 64);
+            runButton.Size = new Size(65, 30);
             runButton.TabIndex = 1;
             runButton.Text = "Run";
             runButton.UseVisualStyleBackColor = true;
@@ -59,10 +60,10 @@
             // 
             // load
             // 
-            load.Location = new Point(11, 13);
-            load.Margin = new Padding(4, 2, 4, 2);
+            load.Location = new Point(6, 6);
+            load.Margin = new Padding(2, 1, 2, 1);
             load.Name = "load";
-            load.Size = new Size(121, 64);
+            load.Size = new Size(65, 30);
             load.TabIndex = 2;
             load.Text = "Load";
             load.UseVisualStyleBackColor = true;
@@ -73,16 +74,28 @@
             openFileDialog1.DefaultExt = "*.ch8";
             openFileDialog1.Filter = "Chip8 Program|*.ch8";
             // 
+            // fastCheckBox
+            // 
+            fastCheckBox.AutoSize = true;
+            fastCheckBox.Location = new Point(188, 12);
+            fastCheckBox.Name = "fastCheckBox";
+            fastCheckBox.Size = new Size(47, 19);
+            fastCheckBox.TabIndex = 3;
+            fastCheckBox.Text = "Fast";
+            fastCheckBox.UseVisualStyleBackColor = true;
+            fastCheckBox.CheckedChanged += fastCheckBox_CheckedChanged;
+            // 
             // mainForm
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1376, 975);
+            ClientSize = new Size(741, 457);
+            Controls.Add(fastCheckBox);
             Controls.Add(load);
             Controls.Add(runButton);
             Controls.Add(display);
             DoubleBuffered = true;
-            Margin = new Padding(4, 2, 4, 2);
+            Margin = new Padding(2, 1, 2, 1);
             Name = "mainForm";
             StartPosition = FormStartPosition.Manual;
             Text = "Chip8";
@@ -92,6 +105,7 @@
             KeyUp += mainForm_KeyUp;
             ((System.ComponentModel.ISupportInitialize)display).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -100,5 +114,6 @@
         private Button runButton;
         private Button load;
         private OpenFileDialog openFileDialog1;
+        private CheckBox fastCheckBox;
     }
 }

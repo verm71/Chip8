@@ -23,6 +23,7 @@ namespace chip8
         private double waitTime = 0;
         private int CalibrationInstructionCount = 300;   // how many instructions per second to calibrate to
         private bool calibrateMode = true;
+        public bool fast = false;
 
         ushort[] CalibrateROM = { 0x6000, 0x7001, 0x610F, 0x8012, 0x6200, 0xF029, 0x00E0, 0xD225, 0x6AFF, 0x1202 };
 
@@ -226,7 +227,8 @@ namespace chip8
             while (run)
             {
                 startWait = DateTime.Now;
-                while ((DateTime.Now - startWait).TotalMilliseconds < waitTime) { };
+                while (!fast && (DateTime.Now - startWait).TotalMilliseconds < waitTime) { };
+                while (fast && (DateTime.Now - startWait).TotalMilliseconds < 0.05) { };
 
                 // skip executing the CPU for a set number of times based on the speed calibration
 
