@@ -31,8 +31,10 @@ namespace Chip8
             {
                 mac.Stop();
             }
-
-            mac.keys.register(e.KeyCode);
+            else
+            {
+                mac.keys.register(e.KeyCode);
+            }
         }
 
         private void load_Click(object sender, EventArgs e)

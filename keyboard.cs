@@ -1,32 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Chip8
+﻿namespace Chip8
 {
-     public class keyboard
+    public class keypad
     {
         bool[] KeyState;   // timestamp of when the key was pressed down
-        public readonly Keys[] KeysCodes = { Keys.X, Keys.D1, Keys.D2, Keys.D3, Keys.Q, Keys.W, Keys.E, Keys.A, Keys.S, Keys.D, Keys.Z, Keys.C, Keys.D4, Keys.R, Keys.F, Keys.V ,Keys.D0};
-        
+        public readonly Keys[] KeysCodes = { Keys.X, Keys.D1, Keys.D2, Keys.D3, Keys.Q, Keys.W, Keys.E, Keys.A, Keys.S, Keys.D, Keys.Z, Keys.C, Keys.D4, Keys.R, Keys.F, Keys.V, Keys.D0 };
 
-        public keyboard()
+        public keypad()
         {
-            KeyState = new bool[KeysCodes.Length+1];            
+            KeyState = new bool[KeysCodes.Length + 1];
         }
 
-        public void register(Keys keyhit)
+        public byte register(Keys keyhit)
         {
-            for (int i=0;i<KeysCodes.Length;i++)
+            for (int i = 0; i < KeysCodes.Length; i++)
             {
                 if (KeysCodes[i] == keyhit)
                 {
                     KeyState[i] = true;
-                    break;
+                    return (byte)i;                    
                 }
             }
+
+            return 0xff; // key not found
         }
 
         public void unregister(Keys keyhit)
@@ -43,9 +38,9 @@ namespace Chip8
 
         public bool isKeyDown(Keys key)
         {
-            for (int i=0;i<KeysCodes.Length;i++)
+            for (int i = 0; i < KeysCodes.Length; i++)
             {
-                if (KeyState[i] && (KeysCodes[i]==key))
+                if (KeyState[i] && (KeysCodes[i] == key))
                     return true;
             }
 
@@ -59,15 +54,15 @@ namespace Chip8
 
         public void clear()
         {
-            for (int i=0; i<KeysCodes.Length; i++)
+            for (int i = 0; i < KeysCodes.Length; i++)
             {
-                KeyState[i]=false;
+                KeyState[i] = false;
             }
         }
 
         public byte GetAnyKey()
         {
-            for (byte i=0;i<KeysCodes.Length;i++)
+            for (byte i = 0; i < KeysCodes.Length; i++)
             {
                 if (KeyState[i])
                 {

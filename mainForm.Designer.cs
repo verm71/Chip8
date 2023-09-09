@@ -39,19 +39,19 @@
             // 
             display.BackColor = Color.Black;
             display.BorderStyle = BorderStyle.FixedSingle;
-            display.Location = new Point(6, 38);
-            display.Margin = new Padding(2, 1, 2, 1);
+            display.Location = new Point(11, 81);
+            display.Margin = new Padding(4, 2, 4, 2);
             display.Name = "display";
-            display.Size = new Size(640, 320);
+            display.Size = new Size(1187, 680);
             display.TabIndex = 0;
             display.TabStop = false;
             // 
             // runButton
             // 
-            runButton.Location = new Point(118, 6);
-            runButton.Margin = new Padding(2, 1, 2, 1);
+            runButton.Location = new Point(219, 13);
+            runButton.Margin = new Padding(4, 2, 4, 2);
             runButton.Name = "runButton";
-            runButton.Size = new Size(65, 30);
+            runButton.Size = new Size(121, 64);
             runButton.TabIndex = 1;
             runButton.Text = "Run";
             runButton.UseVisualStyleBackColor = true;
@@ -59,10 +59,10 @@
             // 
             // load
             // 
-            load.Location = new Point(6, 6);
-            load.Margin = new Padding(2, 1, 2, 1);
+            load.Location = new Point(11, 13);
+            load.Margin = new Padding(4, 2, 4, 2);
             load.Name = "load";
-            load.Size = new Size(65, 30);
+            load.Size = new Size(121, 64);
             load.TabIndex = 2;
             load.Text = "Load";
             load.UseVisualStyleBackColor = true;
@@ -71,17 +71,18 @@
             // openFileDialog1
             // 
             openFileDialog1.DefaultExt = "*.ch8";
+            openFileDialog1.Filter = "Chip8 Program|*.ch8";
             // 
             // mainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(741, 457);
+            ClientSize = new Size(1376, 975);
             Controls.Add(load);
             Controls.Add(runButton);
             Controls.Add(display);
             DoubleBuffered = true;
-            Margin = new Padding(2, 1, 2, 1);
+            Margin = new Padding(4, 2, 4, 2);
             Name = "mainForm";
             StartPosition = FormStartPosition.Manual;
             Text = "Chip8";
