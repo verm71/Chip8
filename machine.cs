@@ -508,7 +508,7 @@ namespace chip8
                                 // SKNP Vx
                                 case 0xa1:
                                     {
-                                        if (!keys.isKeyDown(VReg[Vx]))
+                                        if (!(keys.isKeyDown(VReg[Vx])))
                                         {
                                             PC += 2;
                                         }
@@ -561,6 +561,10 @@ namespace chip8
                                             if (keys.isKeyDown(inkey))
                                             {
                                                 PC -= 2;
+                                            }
+                                            else
+                                            {
+                                                inkey = 0xff;
                                             }
                                         }
                                         break;
