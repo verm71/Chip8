@@ -1,6 +1,4 @@
-﻿
-using Chip8;
-using System.Collections.Generic;
+﻿using Chip8;
 
 namespace chip8
 {
@@ -23,7 +21,7 @@ namespace chip8
         public keypad keys = new();
 
         private double waitTime = 0;
-        private int CalibrationInstructionCount = 700;   // how many instructions per second to calibrate to
+        private int CalibrationInstructionCount = 300;   // how many instructions per second to calibrate to
         private bool calibrateMode = true;
 
         ushort[] CalibrateROM = { 0x6000, 0x7001, 0x610F, 0x8012, 0x6200, 0xF029, 0x00E0, 0xD225, 0x6AFF, 0x1202 };
